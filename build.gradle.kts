@@ -14,8 +14,11 @@ repositories {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-    kotlinOptions.useIR = true
+    kotlinOptions {
+        jvmTarget = "1.8"
+        allWarningsAsErrors = true
+        this.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
 }
 
 tasks.withType<Jar> {
